@@ -16,9 +16,9 @@ class Animal:
     
 
 
-class cat(Animal):
+class Cat(Animal):
 
     pass
 
-class mouse(Animal):
+class Mouse(Animal):
     pass

@@ -1,14 +1,16 @@
 from Tablero import Tablero #Importo mi tablero de la clase tablero
-from ClasesCatMouse import mouse, cat
+from ClasesCatMouse import Mouse, Cat
 from Minimax import Minimax
+import time
+
 
 mi_tablero=Tablero(6,6)#Dimensionamos nuestro tablero
-mi_gato= cat(0,0)#Posicion inicial: gato
-mi_raton=mouse(4,4)#Posicion inicial: raton
+mi_gato= Cat(0,0)#Posicion inicial: gato
+mi_raton=Mouse(4,3)#Posicion inicial: raton
 mi_ia_minimax=Minimax()
 
 
-vidas= 7#Numero de veces que jugara 
+vidas= 20#Numero de veces que jugara 
 while True: 
     #Por cada turno restamos las vidas
     vidas -= 1
@@ -33,11 +35,13 @@ while True:
     mi_gato.fila = nueva_fil_gato
     #Colocamos al raton en su nueva ubicacion en la matriz
     mi_tablero.matriz[mi_gato.columna][mi_gato.fila]= 'G'
-
+    if mi_gato.atrapa(mi_raton):#Implementamos el metodo atrapa en el main
+        print("\n----El gato gano🐱----\n")
+        break
 
     
     # 1. Recibes y repartes los valores (Desempaquetado)
-    nueva_col_raton, nueva_fil_raton = mi_ia_minimax.decidir_mejor_movimiento(mi_tablero, mi_gato, mi_raton)
+    nueva_col_raton, nueva_fil_raton = mi_ia_minimax.decidir_mejor_movimiento(mi_tablero,mi_raton, mi_gato)
 
     # 2. Los usas para actualizar al objeto real
     mi_raton.columna = nueva_col_raton
@@ -51,9 +55,8 @@ while True:
 
 
     mi_tablero.dimension()
+    time.sleep(1)
     
-    if mi_gato.atrapa(mi_raton):#Implementamos el metodo atrapa en el main
-        print("\n----El gato gano🐱----\n")
-        break
+  
 
     
