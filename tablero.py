@@ -9,17 +9,18 @@ class Tablero:
             print(" [ " + "   " .join(filatab) + " ] ")
 
     def obtener_movimientos_validos(self, columna, fila):
-        movimientos = []
-        if fila > 0: 
-            movimientos.append((columna, fila - 1)) # Mover Arriba
-        if fila < self.filatab - 1: 
-            movimientos.append((columna, fila + 1)) # Mover Abajo
-        if columna > 0: 
-            movimientos.append((columna - 1, fila)) # Mover Izquierda
-        if columna < self.columnatab - 1: 
-            movimientos.append((columna + 1, fila)) # Mover Derecha
-        return movimientos        
+        movimientos = [
+                (-1,-1)(0,-1)(1,-1)        
+                (-1,0)       (1,0)      
+                (-1,1) (0,1) (1,1)
+        ]
+    for dir_columna, dir_fila in movimientos:
+        nueva_columna = columna + dir_columna
+        nueva_fila = fila + dir_fila
 
-        
+    # Validamos que la nueva posición no se salga de los bordes del tablero
+    if (0 <= nueva_columna < self.columnatab) and (0 <= nueva_fila < self.filatab):
+        movimientos.append((nueva_columna, nueva_fila))
+
     
 

@@ -5,8 +5,8 @@ import time
 
 
 mi_tablero=Tablero(6,6)#Dimensionamos nuestro tablero
-mi_gato= Cat(0,0)#Posicion inicial: gato
-mi_raton=Mouse(4,3)#Posicion inicial: raton
+mi_gato= Cat(0,0,mi_tablero)#Posicion inicial: gato
+mi_raton=Mouse(4,3,mi_tablero)#Posicion inicial: raton
 mi_ia_minimax=Minimax()
 
 
