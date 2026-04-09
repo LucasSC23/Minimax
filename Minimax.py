@@ -6,7 +6,7 @@ class Minimax:
 
     def evaluar_distancia(self, pos_gato, pos_raton, tablero):
         # Distancia Manhattan entre gato y ratón
-        distancia = abs(pos_gato[0] - pos_raton[0]) + abs(pos_gato[1] - pos_raton[1])
+        distancia = max(abs(pos_gato[0] - pos_raton[0]) , abs(pos_gato[1] - pos_raton[1]))
         # Salidas disponibles del ratón (acorralamiento)
         salidas = len(tablero.obtener_movimientos_validos(pos_raton[0], pos_raton[1]))
         # Distancia del ratón al queso
@@ -23,14 +23,18 @@ class Minimax:
         if es_turno_gato:  # El gato MINIMIZA
             mejor_puntaje = float('inf')
             for mov in tablero.obtener_movimientos_validos(pos_gato[0], pos_gato[1]):
-                puntaje = self.algoritmo_minimax(tablero, mov, pos_raton, profundidad - 1, False)
+                puntaje = self.algoritmo_minimax(tablero, mov, pos_raton, profundidad - 1, False, alpha, beta)  # + alpha, beta
                 mejor_puntaje = min(mejor_puntaje, puntaje)
+                beta = min(beta, mejor_puntaje)   # +
+                if beta <= alpha: break           # +
             return mejor_puntaje
         else:              # El ratón MAXIMIZA
             mejor_puntaje = float('-inf')
             for mov in tablero.obtener_movimientos_validos(pos_raton[0], pos_raton[1]):
                 puntaje = self.algoritmo_minimax(tablero, pos_gato, mov, profundidad - 1, True)
                 mejor_puntaje = max(mejor_puntaje, puntaje)
+                alpha = max(alpha, mejor_puntaje)  # +
+                if beta <= alpha: break
             return mejor_puntaje
 
     def decidir_mejor_movimiento(self, tablero, personaje, oponente, es_gato):

@@ -5,7 +5,7 @@ from Tablero import Tablero
 from ClasesCatMouse import Cat, Mouse
 from Minimax import Minimax
 
-mi_tablero = Tablero(6, 6, pos_queso=(0, 5))   # Tablero 6x6, queso arriba a la derecha
+mi_tablero = Tablero(6, 6, pos_queso=(3, 3))   # Tablero 6x6, queso arriba a la derecha
 mi_gato    = Cat(5, 0, mi_tablero)              # Gato: esquina inferior izquierda
 mi_raton   = Mouse(5, 5, mi_tablero)            # Ratón: esquina inferior derecha
 mi_ia      = Minimax(profundidad_maxima=4)      # IA con 4 niveles de predicción
