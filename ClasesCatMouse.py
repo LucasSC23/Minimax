@@ -1,36 +1,23 @@
-from   Tablero import   Tablero
+from Tablero import Tablero
+
 class Animal:
-    def __init__(self,fila, columna, tablero):#este es el construcctor como en java, se ejecuta una sola vez
-        self.fila= fila
-        self.columna= columna
-        self.tablero=tablero
-    
-    def mover(self, new_fila, new_columna):
-        if self.tablero.es_posicion_valida(nueva_fila, nueva_columna):
-            self.fila = nueva_fila
-            self.columna = nueva_columna
-            print(f"Movido a {self.fila}, {self.columna}")
-        else:
-            print("No puedes salir del tablero.")
+    def __init__(self, fila, columna, tablero):
+        self.fila    = fila      # Fila actual del animal
+        self.columna = columna   # Columna actual del animal
+        self.tablero = tablero   # Referencia al tablero
 
-    def atrapa(self,animal2):#En este metodo estamos realizando la condicion de que el gato atrape al raton
-        if self.fila == animal2 and self.columna == animal2:#Si el gato esta en la ubicacion
-            print("El gato atrapo al ratón")
-            return True#Devolvemos verdadero
-        else:
-            print("El ratón escapó")
-            return False#Sino devolvemos false
-            
-    def __str__(self):
-        # Esto te ayudará a imprimir la posición fácilmente
-        return f"Posición: ({self.fila}, {self.columna})"
+    def mover(self, nueva_fila, nueva_columna):
+        # Borramos la posición anterior en la matriz
+        self.tablero.matriz[self.fila][self.columna] = '-'
+        self.fila    = nueva_fila       # Actualizamos la fila
+        self.columna = nueva_columna    # Actualizamos la columna
 
-    
-
+    def atrapa(self, otro):
+        # Retorna True si ambos animales están en la misma celda
+        return self.fila == otro.fila and self.columna == otro.columna
 
 class Cat(Animal):
-
-    pass
+    pass   # Hereda todo de Animal, representa al gato
 
 class Mouse(Animal):
-    pass
+    pass   # Hereda todo de Animal, representa al ratón
